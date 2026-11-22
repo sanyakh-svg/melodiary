@@ -81,7 +81,6 @@
         min-height: 100dvh;
       }
 
-      /* 1. Directional Page Transitions */
       @keyframes slideLeft {
         from {
           opacity: 0.3;
@@ -259,6 +258,7 @@
         object-fit: cover;
         border: 1px solid var(--line);
         border-radius: 14px;
+        background: var(--surface2);
         flex-shrink: 0;
       }
       .album-meta {
@@ -348,7 +348,6 @@
         fill: none;
       }
 
-      /* 4. Like button interactions */
       @keyframes heartBeat {
         0% {
           transform: scale(1);
@@ -864,7 +863,6 @@
         margin: 22px 0 10px;
       }
 
-      /* 2. Modal animation */
       @keyframes popIn {
         from {
           opacity: 0;
@@ -910,7 +908,6 @@
         color: white;
       }
 
-      /* 3. Toast animation */
       @keyframes slideUp {
         from {
           opacity: 0;
@@ -963,7 +960,6 @@
         color: #ffacb8;
       }
 
-      /* 5. Star rating scale down on :active */
       .star-picker button:active,
       .rate-button:active {
         transform: scale(0.8);
@@ -990,11 +986,11 @@
     <script>
       const IMG = {
         starboy:
-          "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/e2/61/f8/e261f8c1-73db-9a7a-c89e-1068f19970e0/16UMGIM67863.rgb.jpg/600x600bb.jpg",
+          "https://images.unsplash.com/photo-1614613535768-55864c985e1c?w=400&auto=format&fit=crop",
         afterhours:
-          "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/2b/b9/fe/2bb9fef5-d7f3-8345-25a9-db0e79f463e8/20UMGIM11048.rgb.jpg/600x600bb.jpg",
+          "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=400&auto=format&fit=crop",
         highlights:
-          "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/81/0b/7c/810b7c22-4a8e-7a99-9514-6b76359c8719/21UMGIM06694.rgb.jpg/600x600bb.jpg",
+          "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400&auto=format&fit=crop",
         avatar:
           "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=300&auto=format&fit=crop",
       };
@@ -1031,6 +1027,36 @@
           image: IMG.highlights,
         },
       ];
+
+      // Підтягуємо актуальні обкладинки альбомів напряму з офіційного iTunes Search API
+      async function fetchRealCovers() {
+        const queries = [
+          { id: "starboy", term: "The Weeknd Starboy" },
+          { id: "afterhours", term: "The Weeknd After Hours" },
+          { id: "highlights", term: "The Weeknd The Highlights" },
+        ];
+        for (const item of queries) {
+          try {
+            const res = await fetch(
+              `https://itunes.apple.com/search?term=${encodeURIComponent(item.term)}&entity=album&limit=1`,
+            );
+            const data = await res.json();
+            if (data.results && data.results[0]?.artworkUrl100) {
+              const url = data.results[0].artworkUrl100.replace(
+                "100x100bb",
+                "600x600bb",
+              );
+              IMG[item.id] = url;
+              const target = ALBUMS.find((a) => a.id === item.id);
+              if (target) target.image = url;
+            }
+          } catch (e) {
+            // Якщо офлайн — залишається резервне зображення Unsplash
+          }
+        }
+        render();
+      }
+
       const STORAGE = "melodiary_reviews_v2";
       const SEED = [
         {
@@ -1522,6 +1548,7 @@ ${compact ? `<p class="excerpt">${esc(r.text)}</p>` : `<p class="excerpt">${esc(
         if (e.key === "Escape" && deleteId) cancelDelete();
       });
       render();
+      fetchRealCovers();
     </script>
   </body>
 </html>
