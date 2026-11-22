@@ -258,6 +258,7 @@
         width: 160px;
         object-fit: cover;
         border: 1px solid var(--line);
+        border-radius: 14px;
         flex-shrink: 0;
       }
       .album-meta {
@@ -987,16 +988,47 @@
   <body>
     <div id="app" class="app"></div>
     <script>
+      function makeCover(title, artist, c1, c2) {
+        const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="320" height="320" viewBox="0 0 320 320">
+          <defs>
+            <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="${c1}"/>
+              <stop offset="100%" stop-color="${c2}"/>
+            </linearGradient>
+          </defs>
+          <rect width="320" height="320" fill="url(#g)"/>
+          <circle cx="250" cy="70" r="95" fill="#ffffff" fill-opacity="0.08"/>
+          <circle cx="70" cy="260" r="110" fill="#090b14" fill-opacity="0.25"/>
+          <text x="24" y="245" fill="#edf0ff" font-family="Arial, sans-serif" font-weight="bold" font-size="28">${title}</text>
+          <text x="24" y="280" fill="#d5d8e5" font-family="Arial, sans-serif" font-size="20">${artist}</text>
+        </svg>`;
+        return "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(svg);
+      }
+
       const IMG = {
-        starboy:
-          "https://upload.wikimedia.org/wikipedia/en/3/39/The_Weeknd_-_Starboy_%28album_cover%29.png",
-        afterhours:
-          "https://upload.wikimedia.org/wikipedia/en/c/c1/The_Weeknd_-_After_Hours.png",
-        highlights:
-          "https://upload.wikimedia.org/wikipedia/en/b/b8/The_Weeknd_-_The_Highlights.png",
+        starboy: makeCover("STARBOY", "The Weeknd", "#d91e36", "#1b266b"),
+        afterhours: makeCover(
+          "AFTER HOURS",
+          "The Weeknd",
+          "#8b1e24",
+          "#121526",
+        ),
+        highlights: makeCover(
+          "THE HIGHLIGHTS",
+          "The Weeknd",
+          "#7189ff",
+          "#c471ff",
+        ),
         avatar:
-          "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150",
+          "data:image/svg+xml;charset=UTF-8," +
+          encodeURIComponent(
+            `<svg xmlns="http://www.w3.org/2000/svg" width="150" height="150" viewBox="0 0 150 150">
+              <rect width="150" height="150" rx="75" fill="#252c50"/>
+              <text x="75" y="94" text-anchor="middle" fill="#c471ff" font-family="Arial, sans-serif" font-weight="bold" font-size="56">П</text>
+            </svg>`,
+          ),
       };
+
       const ALBUMS = [
         {
           id: "starboy",
@@ -1109,9 +1141,8 @@
         toastTimer = null,
         errorText = "";
       let transitionDir = "fade";
-      // Стан вибраного року та місяця для Щоденника (починаємо з листопада 2026)
       let diaryYear = 2026,
-        diaryMonth = 10; // 0-indexed: 10 = Листопад, 9 = Жовтень, 8 = Вересень, 7 = Серпень
+        diaryMonth = 10;
 
       const MONTHS_UK = [
         "Січень",
