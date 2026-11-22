@@ -988,45 +988,15 @@
   <body>
     <div id="app" class="app"></div>
     <script>
-      function makeCover(title, artist, c1, c2) {
-        const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="320" height="320" viewBox="0 0 320 320">
-          <defs>
-            <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stop-color="${c1}"/>
-              <stop offset="100%" stop-color="${c2}"/>
-            </linearGradient>
-          </defs>
-          <rect width="320" height="320" fill="url(#g)"/>
-          <circle cx="250" cy="70" r="95" fill="#ffffff" fill-opacity="0.08"/>
-          <circle cx="70" cy="260" r="110" fill="#090b14" fill-opacity="0.25"/>
-          <text x="24" y="245" fill="#edf0ff" font-family="Arial, sans-serif" font-weight="bold" font-size="28">${title}</text>
-          <text x="24" y="280" fill="#d5d8e5" font-family="Arial, sans-serif" font-size="20">${artist}</text>
-        </svg>`;
-        return "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(svg);
-      }
-
       const IMG = {
-        starboy: makeCover("STARBOY", "The Weeknd", "#d91e36", "#1b266b"),
-        afterhours: makeCover(
-          "AFTER HOURS",
-          "The Weeknd",
-          "#8b1e24",
-          "#121526",
-        ),
-        highlights: makeCover(
-          "THE HIGHLIGHTS",
-          "The Weeknd",
-          "#7189ff",
-          "#c471ff",
-        ),
+        starboy:
+          "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/e2/61/f8/e261f8c1-73db-9a7a-c89e-1068f19970e0/16UMGIM67863.rgb.jpg/600x600bb.jpg",
+        afterhours:
+          "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/2b/b9/fe/2bb9fef5-d7f3-8345-25a9-db0e79f463e8/20UMGIM11048.rgb.jpg/600x600bb.jpg",
+        highlights:
+          "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/81/0b/7c/810b7c22-4a8e-7a99-9514-6b76359c8719/21UMGIM06694.rgb.jpg/600x600bb.jpg",
         avatar:
-          "data:image/svg+xml;charset=UTF-8," +
-          encodeURIComponent(
-            `<svg xmlns="http://www.w3.org/2000/svg" width="150" height="150" viewBox="0 0 150 150">
-              <rect width="150" height="150" rx="75" fill="#252c50"/>
-              <text x="75" y="94" text-anchor="middle" fill="#c471ff" font-family="Arial, sans-serif" font-weight="bold" font-size="56">П</text>
-            </svg>`,
-          ),
+          "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=300&auto=format&fit=crop",
       };
 
       const ALBUMS = [
