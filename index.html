@@ -1323,12 +1323,27 @@ ${compact ? `<p class="excerpt">${esc(r.text)}</p>` : `<p class="excerpt">${esc(
       }
       function searchPage() {
         let q = query.trim().toLocaleLowerCase("uk");
-        let found = ALBUMS.filter((a) =>
-          [a.title, a.artist, a.year].some((t) =>
-            t.toLocaleLowerCase("uk").includes(q),
-          ),
-        );
-        return `<h1>Пошук</h1><div class="searchfield">${ico("search")}<input id="searchInput" aria-label="Пошук альбому" placeholder="Назва альбому або виконавець" value="${esc(query)}" oninput="searchChange(this.value)"><button class="clear" aria-label="Очистити пошук" onclick="query='';transitionDir='';render();$('searchInput').focus()">×</button></div><div class="sectionhead"><h3>Альбоми</h3><span>Знайдено: ${found.length}</span></div>${found.length ? found.map((a) => `<button class="card search-card" onclick="go('album',{album:'${a.id}'})"><img class="cover" alt="Обкладинка ${esc(a.title)}" src="${a.image}"><div class="album-meta"><div class="album-name">${esc(a.title)}</div><div class="artist">${esc(a.artist)}</div><small>Альбом · ${a.year}</small></div><div class="rating-side">${stars(Math.round(Number(a.rating)))}<div style="color:var(--muted);font-size:14px">${a.rating} / 5</div></div></button>`).join("") : `<div class="empty">${ico("empty")}<h3>Нічого не знайдено</h3><p>Спробуй іншу назву альбому або виконавця.</p><button class="outline" style="margin-top:18px" onclick="query='';transitionDir='';render();$('searchInput').focus()">Очистити пошук</button></div>`}`;
+        let found = q
+          ? ALBUMS.filter((a) =>
+              [a.title, a.artist, a.year].some((t) =>
+                t.toLocaleLowerCase("uk").includes(q),
+              ),
+            )
+          : [];
+
+        return `<h1>Пошук</h1><div class="searchfield">${ico("search")}<input id="searchInput" aria-label="Пошук альбому" placeholder="Назва альбому або виконавець" value="${esc(query)}" oninput="searchChange(this.value)"><button class="clear" aria-label="Очистити пошук" onclick="query='';transitionDir='';render();$('searchInput').focus()">×</button></div>${
+          !q
+            ? `<div class="empty">${ico("search")}<h3>Знайди улюблений реліз</h3><p>Введи назву альбому, ім’я виконавця або рік виходу у поле вище.</p></div>`
+            : found.length
+              ? `<div class="sectionhead"><h3>Альбоми</h3></div>` +
+                found
+                  .map(
+                    (a) =>
+                      `<button class="card search-card" onclick="go('album',{album:'${a.id}'})"><img class="cover" alt="Обкладинка ${esc(a.title)}" src="${a.image}"><div class="album-meta"><div class="album-name">${esc(a.title)}</div><div class="artist">${esc(a.artist)}</div><small>Альбом · ${a.year}</small></div><div class="rating-side">${stars(Math.round(Number(a.rating)))}<div style="color:var(--muted);font-size:14px">${a.rating} / 5</div></div></button>`,
+                  )
+                  .join("")
+              : `<div class="empty">${ico("empty")}<h3>Нічого не знайдено</h3><p>Спробуй іншу назву альбому або виконавця.</p><button class="outline" style="margin-top:18px" onclick="query='';transitionDir='';render();$('searchInput').focus()">Очистити пошук</button></div>`
+        }`;
       }
       function searchChange(v) {
         query = v;
