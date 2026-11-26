@@ -231,13 +231,218 @@
         font-size: 15px;
       }
       .dots {
-        margin-left: auto;
-        background: transparent;
-        color: var(--text);
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 58px;
+        height: 34px;
+        padding: 0 10px;
+        background: #3a2f6e;
+        border: 2px solid var(--secondary);
+        border-radius: 17px;
+        color: #ffffff;
         font-weight: bold;
-        font-size: 25px;
-        line-height: 20px;
-        padding: 0 5px;
+        font-size: 22px;
+        letter-spacing: 1px;
+        line-height: 1;
+        box-shadow: 0 0 10px #c471ff55;
+      }
+      .dots::after {
+        content: "";
+        position: absolute;
+        inset: -6px;
+      }
+      .dots[aria-expanded="true"] {
+        background: var(--secondary);
+        color: #160a24;
+      }
+      .by-right {
+        margin-left: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 6px;
+        align-self: stretch;
+      }
+      .by-right .date {
+        margin-left: 0;
+        align-self: auto;
+        padding-bottom: 0;
+      }
+      .album-title-row {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 6px;
+      }
+      .album-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        flex-shrink: 0;
+        margin-top: 2px;
+        padding: 3px 8px 3px 11px;
+        background: transparent;
+        border: 2px solid var(--line);
+        border-radius: 16px;
+        color: var(--text);
+        font-size: 14px;
+        font-weight: 700;
+        white-space: nowrap;
+      }
+      .album-link svg,
+      .next-btn svg,
+      .save-btn svg {
+        width: 20px;
+        height: 20px;
+        stroke: currentColor;
+        stroke-width: 2;
+        fill: none;
+      }
+      .next-btn svg {
+        width: 26px;
+        height: 26px;
+      }
+      .picker-wrap {
+        position: relative;
+      }
+      .period-chip,
+      .month-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: transparent;
+        border: 2px solid var(--line);
+        border-radius: 26px;
+        color: var(--text);
+        font-weight: 700;
+        font-size: 18px;
+        padding: 8px 16px;
+      }
+      .period-chip {
+        margin: 16px 0 4px;
+      }
+      .period-chip svg,
+      .month-btn svg {
+        width: 18px;
+        height: 18px;
+        stroke: currentColor;
+        stroke-width: 2.4;
+        fill: none;
+        transition: transform 0.15s;
+      }
+      .period-chip[aria-expanded="true"] svg {
+        transform: rotate(90deg);
+      }
+      .month-btn[aria-expanded="true"] svg {
+        transform: rotate(180deg);
+      }
+      .picker {
+        position: absolute;
+        z-index: 15;
+        top: calc(100% + 6px);
+        left: 0;
+        min-width: 230px;
+        background: var(--surface2);
+        border: 1px solid var(--line);
+        border-radius: 24px;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        box-shadow: 0 12px 30px #000a;
+      }
+      .picker.center {
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      .picker button {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        background: transparent;
+        border: 2px solid var(--line);
+        border-radius: 20px;
+        color: var(--text);
+        font-weight: 700;
+        font-size: 17px;
+        padding: 8px 14px;
+        text-align: left;
+      }
+      .picker button.current {
+        color: var(--soft);
+      }
+      .picker .check {
+        width: 22px;
+        height: 22px;
+        flex-shrink: 0;
+        border: 2px solid var(--primary);
+        border-radius: 5px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--primary);
+        font-size: 15px;
+        line-height: 1;
+      }
+      .rate-card {
+        padding: 16px 16px 18px;
+        margin-top: 4px;
+      }
+      .rate-title {
+        font-size: 22px;
+        margin: 0 4px 8px;
+      }
+      .rate-card .rate-button {
+        font-size: 31px;
+        padding: 0 1px;
+      }
+      .rate-card .quickrate > div {
+        white-space: nowrap;
+      }
+      .save-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: transparent;
+        border: 2px solid var(--line);
+        border-radius: 20px;
+        color: var(--text);
+        font-weight: 700;
+        font-size: 17px;
+        padding: 6px 14px;
+      }
+      .small-label {
+        display: block;
+        color: var(--soft);
+        font-size: 14px;
+        margin: 12px 6px 6px;
+      }
+      .quick-area {
+        min-height: 92px;
+        border-radius: 26px;
+      }
+      .rate-card .submit-row {
+        margin-top: 14px;
+      }
+      .next-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 14px;
+        padding: 10px 20px 10px 34px;
+      }
+      .step {
+        color: var(--secondary);
+        font-size: 15px;
+        margin: 4px 2px 0;
+        padding-bottom: 6px;
+        border-bottom: 2px solid var(--secondary);
+      }
+      .step strong {
+        font-weight: 700;
       }
       .review-more {
         display: flex;
@@ -820,9 +1025,9 @@
         align-items: center;
         margin: 20px 0;
       }
-      .calendar-head button {
-        background: var(--surface);
-        border: 1px solid var(--line);
+      .calendar-head .arrow {
+        background: transparent;
+        border: none;
         border-radius: 50%;
         width: 44px;
         height: 44px;
@@ -830,7 +1035,7 @@
         align-items: center;
         justify-content: center;
         color: var(--text);
-        font-size: 26px;
+        font-size: 34px;
         line-height: 1;
       }
       .entry-date {
@@ -936,28 +1141,36 @@
       .menu {
         position: absolute;
         right: 12px;
-        top: 37px;
-        background: #2c365b;
+        top: 54px;
+        background: var(--surface2);
         border: 1px solid var(--line);
-        border-radius: 14px;
-        padding: 6px;
+        border-radius: 24px;
+        padding: 12px;
         z-index: 10;
         box-shadow: 0 10px 25px #0009;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        min-width: 160px;
       }
       .menu button {
         display: block;
         width: 100%;
-        text-align: left;
+        text-align: center;
         background: transparent;
+        border: 2px solid var(--line);
         color: var(--text);
-        padding: 11px 20px;
-        border-radius: 9px;
+        font-weight: 700;
+        font-size: 17px;
+        padding: 9px 20px;
+        border-radius: 22px;
       }
       .menu button:hover {
         background: #3b476f;
       }
       .menu .delete {
-        color: #ffacb8;
+        color: #ff9aa8;
+        border-color: var(--error);
       }
 
       .star-picker button:active,
@@ -1135,7 +1348,11 @@
         quickRating = 0,
         toastText = "",
         toastTimer = null,
-        errorText = "";
+        errorText = "",
+        editingId = null,
+        profilePeriod = "all",
+        periodOpen = false,
+        monthOpen = false;
       let transitionDir = "fade";
       let diaryYear = 2026,
         diaryMonth = 10;
@@ -1211,6 +1428,9 @@
         message:
           '<path d="M21 11a8.5 8.5 0 0 1-9 8 9 9 0 0 1-4-1l-5 3 1.5-5A8.5 8.5 0 1 1 21 11z"/>',
         share: '<path d="m5 12 8-8v5c7 0 9 4 9 10-2-4-5-5-9-5v5z"/>',
+        arrow: '<path d="M4 12h15m-6-6 6 6-6 6"/>',
+        chevR: '<path d="m9 6 6 6-6 6"/>',
+        chevD: '<path d="m6 9 6 6 6-6"/>',
         empty: '<circle cx="11" cy="11" r="7.5"/><path d="m17 17 5 5"/>',
       };
       function ico(name) {
@@ -1223,6 +1443,8 @@
         screen = to;
         if (data?.album) selectedAlbum = data.album;
         menuId = null;
+        periodOpen = false;
+        monthOpen = false;
         errorText = "";
         transitionDir = "forward";
         render();
@@ -1231,6 +1453,8 @@
       function back() {
         screen = backStack.pop() || "home";
         menuId = null;
+        periodOpen = false;
+        monthOpen = false;
         errorText = "";
         transitionDir = "backward";
         render();
@@ -1240,6 +1464,8 @@
         screen = to;
         backStack = [];
         menuId = null;
+        periodOpen = false;
+        monthOpen = false;
         errorText = "";
         transitionDir = "fade";
         render();
@@ -1301,10 +1527,9 @@
         let a = album(r.album);
         let compact = context === "profile";
         return `<article class="card review-card ${compact ? "profile-card" : ""}">
-<div class="byline">${reviewer()}<span class="date">${dateFmt(r.date)}</span></div>
-<div class="review-more"><button class="dots" aria-label="Дії з відгуком" aria-expanded="${menuId === r.id}" onclick="toggleMenu('${r.id}')">•••</button></div>
-${menuId === r.id ? `<div class="menu"><button onclick="openReview('${r.id}')">Переглянути</button><button class="delete" onclick="askDelete('${r.id}')">Видалити відгук</button></div>` : ""}
-<div class="album-row open-card" role="button" tabindex="0" onclick="go('album',{album:'${a.id}'})" onkeydown="if(event.key==='Enter')go('album',{album:'${a.id}'})"><img class="cover" alt="Обкладинка альбому ${esc(a.title)}" src="${a.image}"><div class="album-meta"><div class="album-name">${esc(a.title)}</div><div class="artist">${esc(a.artist)}</div><div class="rating" style="margin-top:${compact ? "25" : "65"}px">${stars(r.rating)}<span>${r.rating} / 5</span></div></div></div>
+<div class="byline">${reviewer()}<div class="by-right"><button class="dots" aria-label="Дії з відгуком" aria-expanded="${menuId === r.id}" onclick="toggleMenu('${r.id}')">•••</button><span class="date">${dateFmt(r.date)}</span></div></div>
+${menuId === r.id ? `<div class="menu"><button onclick="editReview('${r.id}')">Редагувати</button><button class="delete" onclick="askDelete('${r.id}')">Видалити</button></div>` : ""}
+<div class="album-row open-card" role="button" tabindex="0" onclick="go('album',{album:'${a.id}'})" onkeydown="if(event.key==='Enter')go('album',{album:'${a.id}'})"><img class="cover" alt="Обкладинка альбому ${esc(a.title)}" src="${a.image}"><div class="album-meta"><div class="album-title-row"><div class="album-name">${esc(a.title)}</div>${compact ? "" : `<button class="album-link" onclick="event.stopPropagation();go('album',{album:'${a.id}'})" aria-label="Відкрити сторінку альбому ${esc(a.title)}">Альбом ${ico("arrow")}</button>`}</div><div class="artist">${esc(a.artist)}</div><div class="rating" style="margin-top:${compact ? "25" : "58"}px">${stars(r.rating)}<span>${r.rating} / 5</span></div></div></div>
 <div class="excerpt-title">${esc(r.title || "Мій відгук")}</div>
 ${compact ? `<p class="excerpt">${esc(r.text)}</p>` : `<p class="excerpt">${esc(r.text)}</p><div class="chips"><span class="chip">Інді</span><span class="chip pink">${esc(r.mood || "Ностальгія")}</span></div><div class="engage"><button class="plain-icon" onclick="toggleLike(this)">${ico("heart")} ${r.likes || 0}</button><button class="plain-icon" onclick="showToast('Коментарі в демонстраційній версії')">${ico("message")} 3</button><button class="plain-icon share" onclick="shareReview('${r.id}')">${ico("share")}</button></div>`}</article>`;
       }
@@ -1368,13 +1593,25 @@ ${compact ? `<p class="excerpt">${esc(r.text)}</p>` : `<p class="excerpt">${esc(
                 )
                 .join("")
             : `<div class="card" style="text-align:center;color:var(--muted)">Відгуків ще немає — будь першою!</div>`
-        }<div class="divider"></div><div class="quickrate"><div>${[1, 2, 3, 4, 5].map((i) => `<button class="rate-button ${quickRating >= i ? "selected" : ""}" onclick="quickRating=${i};transitionDir='';render()" aria-label="${i} зірок">${quickRating >= i ? "★" : "☆"}</button>`).join("")}</div><button class="heart" aria-label="Зберегти альбом" onclick="showToast('Альбом додано до збереженого')">♡</button></div><textarea id="quickText" class="text-area" maxlength="1000" placeholder="Введіть текст..." oninput="quickText=this.value">${esc(quickText)}</textarea><div class="submit-row"><button class="primary" onclick="startReview()">Опублікувати</button></div>`;
+        }<div class="divider"></div><section class="card rate-card" aria-labelledby="rateTitle"><h2 id="rateTitle" class="rate-title">Ваша оцінка альбому</h2><div class="quickrate"><div>${[1, 2, 3, 4, 5].map((i) => `<button class="rate-button ${quickRating >= i ? "selected" : ""}" onclick="quickRating=${i};transitionDir='';render()" aria-label="${i} зірок">${quickRating >= i ? "★" : "☆"}</button>`).join("")}</div><button class="save-btn" aria-label="Зберегти альбом" onclick="showToast('Альбом додано до збереженого')">${ico("heart")}<span>Зберегти</span></button></div><label for="quickText" class="small-label">Коротке враження</label><textarea id="quickText" class="text-area quick-area" maxlength="1000" placeholder="Що ви відчули, слухаючи альбом?" oninput="quickText=this.value">${esc(quickText)}</textarea><div class="submit-row"><button class="primary next-btn" onclick="startReview()">Далі ${ico("arrow")}</button></div></section>`;
       }
       function startReview() {
         rating = quickRating || 0;
         reviewText = quickText;
         reviewTitle = "";
         mood = "Ностальгія";
+        editingId = null;
+        go("writeReview");
+      }
+      function editReview(id) {
+        const r = reviews.find((x) => x.id === id);
+        if (!r) return;
+        editingId = id;
+        selectedAlbum = r.album;
+        rating = r.rating;
+        reviewText = r.text;
+        reviewTitle = r.title || "";
+        mood = r.mood || "Ностальгія";
         go("writeReview");
       }
       function allReviews() {
@@ -1386,7 +1623,7 @@ ${compact ? `<p class="excerpt">${esc(r.text)}</p>` : `<p class="excerpt">${esc(
       }
       function writeReview() {
         const a = album(selectedAlbum);
-        return `<div class="formbox">${header("Написати відгук")}<div class="form-album"><img class="cover" src="${a.image}" alt="Обкладинка ${esc(a.title)}"><div><div class="album-name">${esc(a.title)}</div><div class="artist">${esc(a.artist)}</div></div></div><div class="divider" style="margin:12px 28px 8px 0"></div><div class="fieldlabel">Ваша оцінка <span class="required">*</span></div><div class="star-picker">${[1, 2, 3, 4, 5].map((i) => `<button class="${rating >= i ? "selected" : ""}" onclick="rating=${i};transitionDir='';render()" aria-label="Оцінити на ${i} з 5">${rating >= i ? "★" : "☆"}</button>`).join("")}</div><label for="reviewTitle" class="fieldlabel">Заголовок відгуку</label><input id="reviewTitle" class="text-area" style="min-height:51px;height:51px;border-radius:18px;padding:11px 16px" placeholder="Наприклад: Музика для душі" maxlength="80" value="${esc(reviewTitle)}" oninput="reviewTitle=this.value"><label for="reviewBody" class="fieldlabel">Ваш відгук <span class="required">*</span></label><textarea id="reviewBody" class="text-area" maxlength="1000" placeholder="Введіть текст..." oninput="reviewText=this.value;updateCount()">${esc(reviewText)}</textarea><div class="hint" id="textCount">${reviewText.length} / 1000 символів</div><div class="fieldlabel">Настрій <span style="color:var(--soft);font-weight:400">(необов’язково)</span></div><div class="mood-wrap">${["Ностальгія", "Спокійний", "Натхнення", "Енергійний"].map((t) => `<button class="mood ${mood === t ? "selected" : ""}" onclick="mood='${t}';transitionDir='';render()">${t}</button>`).join("")}</div>${errorText ? `<p class="error" role="alert">${esc(errorText)}</p>` : ""}<div class="form-actions"><button class="primary full" onclick="publish()">Опублікувати</button><button class="outline" onclick="cancelReview()">Скасувати</button></div></div>`;
+        return `<div class="formbox">${header(editingId ? "Редагувати відгук" : "Написати відгук")}${editingId ? "" : `<div class="step"><strong>Крок 2 з 2</strong> • відгук і настрій</div>`}<div class="form-album"><img class="cover" src="${a.image}" alt="Обкладинка ${esc(a.title)}"><div><div class="album-name">${esc(a.title)}</div><div class="artist">${esc(a.artist)}</div></div></div><div class="divider" style="margin:12px 28px 8px 0"></div><div class="fieldlabel">Ваша оцінка <span class="required">*</span></div><div class="star-picker">${[1, 2, 3, 4, 5].map((i) => `<button class="${rating >= i ? "selected" : ""}" onclick="rating=${i};transitionDir='';render()" aria-label="Оцінити на ${i} з 5">${rating >= i ? "★" : "☆"}</button>`).join("")}</div><label for="reviewBody" class="fieldlabel">Ваш відгук <span class="required">*</span></label><textarea id="reviewBody" class="text-area" maxlength="1000" placeholder="Введіть текст..." oninput="reviewText=this.value;updateCount()">${esc(reviewText)}</textarea><div class="hint" id="textCount">${reviewText.length} / 1000 символів</div><div class="fieldlabel">Настрій <span style="color:var(--soft);font-weight:400">(необов’язково)</span></div><div class="mood-wrap">${["Ностальгія", "Спокійний", "Натхнення", "Енергійний"].map((t) => `<button class="mood ${mood === t ? "selected" : ""}" onclick="mood='${t}';transitionDir='';render()">${t}</button>`).join("")}</div>${errorText ? `<p class="error" role="alert">${esc(errorText)}</p>` : ""}<div class="form-actions"><button class="primary full" onclick="publish()">${editingId ? "Зберегти зміни" : "Опублікувати"}</button><button class="outline" onclick="cancelReview()">Скасувати</button></div></div>`;
       }
       function updateCount() {
         const e = $("textCount");
@@ -1398,6 +1635,7 @@ ${compact ? `<p class="excerpt">${esc(r.text)}</p>` : `<p class="excerpt">${esc(
         reviewTitle = "";
         quickRating = 0;
         quickText = "";
+        editingId = null;
         back();
       }
       function publish() {
@@ -1411,6 +1649,27 @@ ${compact ? `<p class="excerpt">${esc(r.text)}</p>` : `<p class="excerpt">${esc(
           errorText = "Напишіть текст відгуку перед публікацією.";
           transitionDir = "";
           render();
+          return;
+        }
+        if (editingId) {
+          const r = reviews.find((x) => x.id === editingId);
+          if (r) {
+            r.rating = rating;
+            r.text = reviewText.trim();
+            r.mood = mood;
+          }
+          persist();
+          editingId = null;
+          rating = 0;
+          reviewText = "";
+          reviewTitle = "";
+          screen = "profile";
+          profileTab = "reviews";
+          backStack = [];
+          transitionDir = "forward";
+          render();
+          window.scrollTo(0, 0);
+          showToast("✓ Відгук оновлено");
           return;
         }
         const now = new Date();
@@ -1436,17 +1695,61 @@ ${compact ? `<p class="excerpt">${esc(r.text)}</p>` : `<p class="excerpt">${esc(
         reviewTitle = "";
         screen = "profile";
         profileTab = "reviews";
+        profilePeriod = "all";
         backStack = [];
         transitionDir = "forward";
         render();
         window.scrollTo(0, 0);
         showToast("✓ Відгук успішно опубліковано!");
       }
+      function monthKey(iso) {
+        const d = new Date(iso);
+        return d.getFullYear() + "-" + d.getMonth();
+      }
+      function monthLabel(key) {
+        const [y, m] = key.split("-").map(Number);
+        return `${MONTHS_UK[m]} ${y}`;
+      }
+      function reviewMonths(extraKey) {
+        const keys = new Set(reviews.map((r) => monthKey(r.date)));
+        if (extraKey) keys.add(extraKey);
+        return [...keys].sort((a, b) => {
+          const [ya, ma] = a.split("-").map(Number);
+          const [yb, mb] = b.split("-").map(Number);
+          return yb - ya || mb - ma;
+        });
+      }
+      function pickerItem(label, current, onclick) {
+        return `<button class="${current ? "current" : ""}" aria-pressed="${current}" onclick="${onclick}">${label}<span class="check" aria-hidden="true">${current ? "✓" : ""}</span></button>`;
+      }
+      function togglePeriod() {
+        periodOpen = !periodOpen;
+        transitionDir = "";
+        render();
+      }
+      function setPeriod(key) {
+        profilePeriod = key;
+        periodOpen = false;
+        transitionDir = "fade";
+        render();
+      }
+      function periodFilter() {
+        const label =
+          profilePeriod === "all" ? "усі" : monthLabel(profilePeriod);
+        return `<div class="picker-wrap"><button class="period-chip" aria-haspopup="true" aria-expanded="${periodOpen}" onclick="togglePeriod()">Період: ${label} ${ico("chevR")}</button>${
+          periodOpen
+            ? `<div class="picker">${pickerItem("Усі", profilePeriod === "all", "setPeriod('all')")}${reviewMonths()
+                .map((k) => pickerItem(monthLabel(k), profilePeriod === k, `setPeriod('${k}')`))
+                .join("")}</div>`
+            : ""
+        }</div>`;
+      }
       function profile() {
         let list = reviews
+          .filter((r) => profilePeriod === "all" || monthKey(r.date) === profilePeriod)
           .slice()
           .sort((a, b) => new Date(b.date) - new Date(a.date));
-        return `<div class="profile-header"><h1>Профіль</h1><img src="${IMG.avatar}" alt="Фото профілю" class="profile-photo"><div class="profile-name">Поліна</div><div class="handle">@poli.mus</div><p class="bio">Зберігаю спогади в музиці</p><div class="stats"><div class="stat"><strong>${reviews.length + 19}</strong><span>Відгуки</span></div><div class="stat"><strong>160</strong><span>Підписники</span></div><div class="stat"><strong>234</strong><span>Підписки</span></div></div><button class="outline edit-btn" onclick="showToast('Редагування профілю недоступне в демоверсії')">Редагувати профіль</button></div><div class="profile-tabs"><button class="${profileTab === "reviews" ? "active" : ""}" onclick="profileTab='reviews';transitionDir='fade';render()">Відгуки</button><button class="${profileTab === "saved" ? "active" : ""}" onclick="profileTab='saved';transitionDir='fade';render()">Збережене</button></div>${profileTab === "saved" ? `<div class="empty"><h3>Поки нічого не збережено</h3><p>Збережені альбоми відображатимуться тут.</p></div>` : list.length ? list.map((r) => reviewCard(r, "profile")).join("") : `<div class="empty"><h3>Твоїх відгуків поки немає</h3><p>Знайди улюблений альбом та напиши перший відгук.</p><button class="primary" style="margin-top:18px" onclick="tab('search')">Шукати альбом</button></div>`}`;
+        return `<div class="profile-header"><h1>Профіль</h1><img src="${IMG.avatar}" alt="Фото профілю" class="profile-photo"><div class="profile-name">Поліна</div><div class="handle">@poli.mus</div><p class="bio">Зберігаю спогади в музиці</p><div class="stats"><div class="stat"><strong>${reviews.length + 19}</strong><span>Відгуки</span></div><div class="stat"><strong>160</strong><span>Підписники</span></div><div class="stat"><strong>234</strong><span>Підписки</span></div></div><button class="outline edit-btn" onclick="showToast('Редагування профілю недоступне в демоверсії')">Редагувати профіль</button></div><div class="profile-tabs"><button class="${profileTab === "reviews" ? "active" : ""}" onclick="profileTab='reviews';transitionDir='fade';render()">Відгуки</button><button class="${profileTab === "saved" ? "active" : ""}" onclick="profileTab='saved';transitionDir='fade';render()">Збережене</button></div>${profileTab === "saved" ? `<div class="empty"><h3>Поки нічого не збережено</h3><p>Збережені альбоми відображатимуться тут.</p></div>` : periodFilter() + (list.length ? list.map((r) => reviewCard(r, "profile")).join("") : profilePeriod !== "all" ? `<div class="empty"><h3>За цей період відгуків немає</h3><p>Оберіть інший місяць або «Усі».</p></div>` : `<div class="empty"><h3>Твоїх відгуків поки немає</h3><p>Знайди улюблений альбом та напиши перший відгук.</p><button class="primary" style="margin-top:18px" onclick="tab('search')">Шукати альбом</button></div>`)}`;
       }
       function changeDiaryMonth(delta) {
         diaryMonth += delta;
@@ -1457,7 +1760,21 @@ ${compact ? `<p class="excerpt">${esc(r.text)}</p>` : `<p class="excerpt">${esc(
           diaryMonth = 0;
           diaryYear += 1;
         }
+        monthOpen = false;
         transitionDir = delta < 0 ? "backward" : "forward";
+        render();
+      }
+      function toggleMonth() {
+        monthOpen = !monthOpen;
+        transitionDir = "";
+        render();
+      }
+      function setDiaryMonth(key) {
+        const [y, m] = key.split("-").map(Number);
+        diaryYear = y;
+        diaryMonth = m;
+        monthOpen = false;
+        transitionDir = "fade";
         render();
       }
       function diary() {
@@ -1467,8 +1784,15 @@ ${compact ? `<p class="excerpt">${esc(r.text)}</p>` : `<p class="excerpt">${esc(
             return d.getFullYear() === diaryYear && d.getMonth() === diaryMonth;
           })
           .sort((a, b) => new Date(b.date) - new Date(a.date));
+        const curKey = diaryYear + "-" + diaryMonth;
 
-        return `${header("Щоденник")}<button class="primary diary-add" onclick="tab('search')">＋ Додати запис</button><div class="calendar-head"><button aria-label="Попередній місяць" onclick="changeDiaryMonth(-1)">‹</button><div><h3>${MONTHS_UK[diaryMonth]} ${diaryYear}</h3><div style="font-size:14px;color:var(--muted)">${pluralEntries(list.length)}</div></div><button aria-label="Наступний місяць" onclick="changeDiaryMonth(1)">›</button></div>${
+        return `${header("Щоденник")}<button class="primary diary-add" onclick="tab('search')">＋ Додати запис</button><div class="calendar-head"><button class="arrow" aria-label="Попередній місяць" onclick="changeDiaryMonth(-1)">‹</button><div class="picker-wrap"><button class="month-btn" aria-haspopup="true" aria-expanded="${monthOpen}" onclick="toggleMonth()">${MONTHS_UK[diaryMonth]} ${diaryYear} ${ico("chevD")}</button>${
+          monthOpen
+            ? `<div class="picker center">${reviewMonths(curKey)
+                .map((k) => pickerItem(monthLabel(k), k === curKey, `setDiaryMonth('${k}')`))
+                .join("")}</div>`
+            : ""
+        }<div style="font-size:14px;color:var(--muted);margin-top:6px">${pluralEntries(list.length)}</div></div><button class="arrow" aria-label="Наступний місяць" onclick="changeDiaryMonth(1)">›</button></div>${
           list.length
             ? list
                 .map((r) => {
@@ -1527,6 +1851,7 @@ ${compact ? `<p class="excerpt">${esc(r.text)}</p>` : `<p class="excerpt">${esc(
         deleteId = null;
         screen = "profile";
         profileTab = "reviews";
+        profilePeriod = "all";
         backStack = [];
         transitionDir = "forward";
         render();
